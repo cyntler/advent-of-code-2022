@@ -14,7 +14,7 @@ def main():
 
     try:
         mod = importlib.import_module("day_tasks." + name)
-        if hasattr(mod, "execute"):
+        if hasattr(mod, "get_result"):
             dirname = os.path.dirname(__file__)
             input_path = os.path.join(dirname, "assets/" + name + "_input.txt")
             if os.path.exists(input_path):
@@ -22,7 +22,7 @@ def main():
                 lines = f.readlines()
                 f.close()
 
-                result = mod.execute(lines)
+                result = mod.get_result(lines)
                 if result:
                     print("Result:", result)
             else:
