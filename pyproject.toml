@@ -2,6 +2,7 @@
 name = "advent-of-code-2022"
 version = "0.1.0"
 description = "My solutions for Advent of Code 2022. Hello Python!"
+keywords = ["advent-of-code-2022", "python"]
 authors = ["Damian Cyntler <damian@cyntler.com>"]
 
 [tool.poetry.dependencies]
