@@ -1,2 +1,2 @@
 #!/bin/sh
-poetry run python src/advent_of_code $1
+poetry run python src/advent_of_code_2022 $1
