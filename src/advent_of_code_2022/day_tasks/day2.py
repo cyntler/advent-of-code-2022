@@ -1,13 +1,13 @@
 opponent_shapes = {
     "rock": "A",
     "paper": "B",
-    "cissors": "C",
+    "scissors": "C",
 }
 
 my_shapes = {
     "rock": "X",
     "paper": "Y",
-    "cissors": "Z",
+    "scissors": "Z",
 }
 
 
@@ -20,7 +20,7 @@ def is_paper(shape: str):
 
 
 def is_scissors(shape: str):
-    return shape == opponent_shapes["cissors"] or shape == my_shapes["cissors"]
+    return shape == opponent_shapes["scissors"] or shape == my_shapes["scissors"]
 
 
 def get_round_shapes(round: str):
@@ -28,12 +28,12 @@ def get_round_shapes(round: str):
 
 
 def get_lose_shape(shape: str):
-    if shape == my_shapes["rock"]:
-        return my_shapes["paper"]
-    if shape == my_shapes["paper"]:
-        return my_shapes["cissors"]
-    if shape == my_shapes["cissors"]:
+    if shape == opponent_shapes["paper"]:
         return my_shapes["rock"]
+    if shape == opponent_shapes["scissors"]:
+        return my_shapes["paper"]
+    if shape == opponent_shapes["rock"]:
+        return my_shapes["scissors"]
 
 
 def get_draw_shape(shape: str):
@@ -42,12 +42,12 @@ def get_draw_shape(shape: str):
 
 
 def get_win_shape(shape: str):
-    if shape == my_shapes["rock"]:
-        return my_shapes["cissors"]
-    if shape == my_shapes["paper"]:
-        return my_shapes["rock"]
-    if shape == my_shapes["cissors"]:
+    if shape == opponent_shapes["rock"]:
         return my_shapes["paper"]
+    if shape == opponent_shapes["paper"]:
+        return my_shapes["scissors"]
+    if shape == opponent_shapes["scissors"]:
+        return my_shapes["rock"]
 
 
 def part_two_rounds_mapper(round: str):
@@ -55,14 +55,11 @@ def part_two_rounds_mapper(round: str):
     new_shape = ""
 
     if my_shape == my_shapes["rock"]:
-        new_shape = get_lose_shape(my_shape)
-        print("lose", opponent_shape, new_shape)
+        new_shape = get_lose_shape(opponent_shape)
     elif my_shape == my_shapes["paper"]:
         new_shape = get_draw_shape(opponent_shape)
-        print("draw", opponent_shape, new_shape)
     else:
-        new_shape = get_win_shape(my_shape)
-        print("win", opponent_shape, new_shape)
+        new_shape = get_win_shape(opponent_shape)
 
     return opponent_shape + " " + new_shape
 
@@ -99,5 +96,4 @@ def get_my_total_score(input: list[str]):
 
 def get_result(input: list[str]):
     part_two_input = map(part_two_rounds_mapper, input)
-
     return get_my_total_score(input), get_my_total_score(part_two_input)
