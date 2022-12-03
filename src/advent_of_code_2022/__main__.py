@@ -1,6 +1,7 @@
 import sys
 import importlib
 import os.path
+import time
 
 
 def main():
@@ -22,9 +23,11 @@ def main():
                 lines = f.readlines()
                 f.close()
 
-                result = mod.get_result(lines)
+                start_time = time.time()
+                result = mod.get_result(list(map(lambda line: line.rstrip(), lines)))
                 if result:
                     print("Result:", result)
+                    print("--- %s seconds ---" % (time.time() - start_time))
             else:
                 print("The input data for task named ", name, "does not exist!")
 
