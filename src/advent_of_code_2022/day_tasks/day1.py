@@ -1,17 +1,17 @@
 from functools import reduce
 
 
-def get_result(input: list[str]):
+def get_result(calories: list[str]):
     elves = [0]
     current_elve_index = 0
 
-    for line in input:
-        if line == "\n":
+    for calorie in calories:
+        if calorie == "":
             elves.append(0)
             current_elve_index += 1
             continue
 
-        elves[current_elve_index] += int(line)
+        elves[current_elve_index] += int(calorie)
 
     elves.sort()
 

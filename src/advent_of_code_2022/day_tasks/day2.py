@@ -24,7 +24,7 @@ def is_scissors(shape: str):
 
 
 def get_round_shapes(round: str):
-    return round.rstrip().split(" ")
+    return round.split(" ")
 
 
 def get_lose_shape(shape: str):
@@ -64,10 +64,10 @@ def part_two_rounds_mapper(round: str):
     return opponent_shape + " " + new_shape
 
 
-def get_my_total_score(input: list[str]):
+def get_my_total_score(rounds: list[str]):
     total_score = 0
 
-    for round in input:
+    for round in rounds:
         [opponent_shape, my_shape] = get_round_shapes(round)
 
         if is_rock(my_shape):
@@ -94,6 +94,6 @@ def get_my_total_score(input: list[str]):
     return total_score
 
 
-def get_result(input: list[str]):
-    part_two_input = map(part_two_rounds_mapper, input)
-    return get_my_total_score(input), get_my_total_score(part_two_input)
+def get_result(rounds: list[str]):
+    part_two_rounds = map(part_two_rounds_mapper, rounds)
+    return get_my_total_score(rounds), get_my_total_score(part_two_rounds)
