@@ -25,9 +25,10 @@ def main():
 
                 start_time = time.time()
                 result = mod.get_result(list(map(lambda line: line.rstrip(), lines)))
+                processing_time = str(time.time() - start_time)
                 if result:
                     print("Result:", result)
-                    print("--- %s seconds ---" % (time.time() - start_time))
+                    print("--- %s seconds ---" % processing_time)
             else:
                 print("The input data for task named ", name, "does not exist!")
 
