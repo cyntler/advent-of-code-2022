@@ -22,8 +22,7 @@ def get_compartment_pairs(rucksacks: list[str]):
 
 def get_three_elf_split_compartments(rucksacks: list[str]):
     compartment_threes = []
-    print(len(rucksacks))
-    for i, rucksack in enumerate(rucksacks):
+    for i, _ in enumerate(rucksacks):
         if (i + 1) % 3 == 0:
             compartment_threes.append(
                 [
