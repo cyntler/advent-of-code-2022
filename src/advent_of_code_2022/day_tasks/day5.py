@@ -27,7 +27,9 @@ def parse_rearrangement_procedure(rearrangement_procedure: list[str]):
     return (shape, instructions)
 
 
-def get_crate_top_of_each_stack(rearrangement_procedure: list[str]):
+def move_single_crate_and_get_crate_top_of_each_stack(
+    rearrangement_procedure: list[str],
+):
     shape, instructions = parse_rearrangement_procedure(rearrangement_procedure)
 
     for ins in instructions:
@@ -38,5 +40,20 @@ def get_crate_top_of_each_stack(rearrangement_procedure: list[str]):
     return reduce(lambda x, value: x + value[0], shape.values(), "")
 
 
+def move_multiple_crates_and_get_crate_top_of_each_stack(
+    rearrangement_procedure: list[str],
+):
+    shape, instructions = parse_rearrangement_procedure(rearrangement_procedure)
+
+    for ins in instructions:
+        [count, from_num, to_num] = ins
+        shape[to_num] = shape[from_num][0:count] + shape[to_num]
+        shape[from_num] = shape[from_num][count:]
+
+    return reduce(lambda x, value: x + value[0], shape.values(), "")
+
+
 def get_result(rearrangement_procedure: list[str]):
-    return get_crate_top_of_each_stack(rearrangement_procedure)
+    return move_single_crate_and_get_crate_top_of_each_stack(
+        rearrangement_procedure
+    ), move_multiple_crates_and_get_crate_top_of_each_stack(rearrangement_procedure)
