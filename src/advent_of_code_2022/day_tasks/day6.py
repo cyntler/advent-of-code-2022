@@ -14,7 +14,6 @@ def detect_start_of_packet_marker(signal: str, distinct_chars_count=4):
                 first_marker = index + 1
                 break
 
-    print(current_letters)
     return first_marker
 
 
