@@ -24,9 +24,13 @@ def main():
                 f.close()
 
                 start_time = time.time()
-                result = mod.get_result(list(map(lambda line: line.rstrip(), lines)))
+                result = mod.get_result(
+                    lines[0].rstrip()
+                    if len(lines) == 1
+                    else list(map(lambda line: line.rstrip(), lines))
+                )
                 processing_time = str(time.time() - start_time)
-                if result:
+                if result != None:
                     print("Result:", result)
                     print("--- %s seconds ---" % processing_time)
             else:
