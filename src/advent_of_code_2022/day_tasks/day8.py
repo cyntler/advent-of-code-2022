@@ -58,8 +58,6 @@ def get_result(tree_map: list[str]):
                     if tree_around >= tree:
                         break
 
-            print(tree, scenic_score_elements)
-
             scenic_score_multipy_result = 1
             for i in scenic_score_elements:
                 scenic_score_multipy_result = (
